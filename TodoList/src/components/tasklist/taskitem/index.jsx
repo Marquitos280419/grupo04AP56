@@ -28,7 +28,6 @@ function TaskItem({ task, toogleTask, deleteTask }) {
       <ListItem
         secondaryAction={
           <>
-            {/* Botón para borrar */}
             <IconButton edge="end" aria-label="DeleteIcon"  onClick={handleDelete}>
               <DeleteIcon />
             </IconButton>

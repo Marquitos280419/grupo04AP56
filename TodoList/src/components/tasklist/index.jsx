@@ -5,7 +5,7 @@ import SweetAlert from "../sweetalert";
 import Swal from "sweetalert2";
 function TaskList() {
   const [taskList, setTaskList] = useState([]);
-
+// esto crea una nueva tarea si la tarea ya existe muestra una alerta de warning si no guarda y muestra un success
   const createNewTask = (taskName) => {
     if (!taskList.find((task) => task.name === taskName)) {
       setTaskList([...taskList, { name: taskName, done: false }]);
@@ -14,6 +14,7 @@ function TaskList() {
       return SweetAlert({ message: "¡Esta tarea ya existe", type: "warning" });
     }
   };
+  // esto actualiza es estado de la tarea 
   const toogleTask = (task) => {
     setTaskList(
       taskList.map((tk) =>
@@ -21,6 +22,7 @@ function TaskList() {
       )
     );
   };
+  //esto borra una tarea
   const deleteTask = (taskName) => {
     Swal.fire({
       title: "Desea borrar",
@@ -41,10 +43,9 @@ function TaskList() {
       }
     });
   };
+
+  // esto borra todas las tareas
   const deleteAllTask = () => {
-    if (taskList.length === 0) {
-      return SweetAlert({ message: "¡No hay tareaas por borrar", type: "warning" });
-    } else {
       Swal.fire({
         title: "Desea borrar todas las tareas",
         text: "Ya no podrá revertirlo!",
@@ -63,26 +64,17 @@ function TaskList() {
           setTaskList([]); // Establece el array a uno vasio
         }
       });
-    }
-  
-  
-  // Uso del componente
-  deleteAllTask();
-  
 
-    return SweetAlert({
-      message: "¡No hay tareas para borrar",
-      type: "warning",
-    });
   };
-
+  // obtiene las lista de tarea del local storage
   useEffect(() => {
     let data = localStorage.getItem("tasks");
     if (data) {
-      setTaskList(JSON.parse(data)); // lo combierto a formato js
+      setTaskList(JSON.parse(data)); // lo combierto a un objeto java script
     }
   }, []); // si no tiene nada en arreglo se ejecuta cuando la app cambie
-
+  
+  // agrega la tarea al local storage y lo combierte a formato json
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }, [taskList]);
