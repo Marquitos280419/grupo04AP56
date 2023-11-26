@@ -5,7 +5,7 @@ import SweetAlert from "../sweetalert";
 import Swal from "sweetalert2";
 function TaskList() {
   const [taskList, setTaskList] = useState([]);
-// esto crea una nueva tarea si la tarea ya existe muestra una alerta de warning si no guarda y muestra un success
+  // esto crea una nueva tarea si la tarea ya existe muestra una alerta de warning si no guarda y muestra un success
   const createNewTask = (taskName) => {
     if (!taskList.find((task) => task.name === taskName)) {
       setTaskList([...taskList, { name: taskName, done: false }]);
@@ -14,7 +14,7 @@ function TaskList() {
       return SweetAlert({ message: "¡Esta tarea ya existe", type: "warning" });
     }
   };
-  // esto actualiza es estado de la tarea 
+  // esto actualiza es estado de la tarea
   const toogleTask = (task) => {
     setTaskList(
       taskList.map((tk) =>
@@ -46,25 +46,24 @@ function TaskList() {
 
   // esto borra todas las tareas
   const deleteAllTask = () => {
-      Swal.fire({
-        title: "Desea borrar todas las tareas",
-        text: "Ya no podrá revertirlo!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Confirmar borrado",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: "Borrado",
-            text: "Todas las tareas han sido borradas.",
-            icon: "success",
-          });
-          setTaskList([]); // Establece el array a uno vasio
-        }
-      });
-
+    Swal.fire({
+      title: "Desea borrar todas las tareas",
+      text: "Ya no podrá revertirlo!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar borrado",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Borrado",
+          text: "Todas las tareas han sido borradas.",
+          icon: "success",
+        });
+        setTaskList([]); // Establece el array a uno vasio
+      }
+    });
   };
   // obtiene las lista de tarea del local storage
   useEffect(() => {
@@ -73,7 +72,7 @@ function TaskList() {
       setTaskList(JSON.parse(data)); // lo combierto a un objeto java script
     }
   }, []); // si no tiene nada en arreglo se ejecuta cuando la app cambie
-  
+
   // agrega la tarea al local storage y lo combierte a formato json
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskList));

@@ -1,4 +1,3 @@
-
 import PropTypes from "prop-types";
 import {
   List,
@@ -12,7 +11,6 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function TaskItem({ task, toogleTask, deleteTask }) {
-
   const handleDelete = () => {
     deleteTask(task.name);
   };
@@ -27,29 +25,37 @@ function TaskItem({ task, toogleTask, deleteTask }) {
     >
       <ListItem
         secondaryAction={
+          // Misma correccion que esta en App.jsx
           <>
-            <IconButton edge="end" aria-label="DeleteIcon"  onClick={handleDelete}>
+            <IconButton
+              edge="end"
+              aria-label="DeleteIcon"
+              onClick={handleDelete}
+            >
               <DeleteIcon />
             </IconButton>
           </>
         }
         disablePadding
       >
-        <ListItemButton role={undefined} dense value={task.done} onChange={() => toogleTask(task)}  >
+        <ListItemButton
+          role={undefined}
+          dense
+          value={task.done}
+          onChange={() => toogleTask(task)}
+        >
           <ListItemIcon>
             <Checkbox
               edge="start"
               tabIndex={-1}
               disableRipple
               checked={task.done}
-
-             
             />
           </ListItemIcon>
           <ListItemText
             primary={task.name}
             sx={{ textDecoration: task.done ? "line-through" : "none" }}
-            style={{overflow:"hidden"}}
+            style={{ overflow: "hidden" }}
           />
         </ListItemButton>
       </ListItem>
@@ -62,12 +68,8 @@ TaskItem.propTypes = {
     name: PropTypes.string.isRequired,
     done: PropTypes.number.isRequired,
   }).isRequired,
-  toogleTask: PropTypes.shape({
-  }).isRequired,
-  deleteTask: PropTypes.shape({
-  }).isRequired,
-
+  toogleTask: PropTypes.shape({}).isRequired,
+  deleteTask: PropTypes.shape({}).isRequired,
 };
-
 
 export default TaskItem;

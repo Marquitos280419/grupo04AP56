@@ -2,28 +2,22 @@ import "./App.css";
 import Grid from "@mui/material/Grid";
 import TaskList from "./components/tasklist";
 
-import {
-  Card,
-  Typography,
- 
-  CardContent,
- 
-} from "@mui/material";
+import { Card, Typography, CardContent } from "@mui/material";
 
 function App() {
   return (
+    // Cuando usamos Card no hace falta el react fragment
     <>
       <Card sx={{ minWidth: 500 }}>
         <CardContent>
-          <Typography sx={{ fontSize: 25 }} color="text.secondary" gutterBottom >
+          <Typography sx={{ fontSize: 25 }} color="text.secondary" gutterBottom>
             Tareas
           </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TaskList/>
+              <TaskList />
             </Grid>
-            <Grid item xs={12}>
-            </Grid>
+            <Grid item xs={12}></Grid>
             <Grid item xs={4}></Grid>
             <Grid item xs={8}></Grid>
           </Grid>
