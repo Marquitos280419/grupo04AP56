@@ -1,7 +1,10 @@
-export const VisibilityControl = ({ isChecked, setshowCompleted, cleanTasks }) => {
-
+export const VisibilityControl = ({
+  isChecked,
+  setshowCompleted,
+  cleanTasks,
+}) => {
   const handleDelete = () => {
-    if (window.confirm('¿Estás seguro de borrar?')) {
+    if (window.confirm("¿Estás seguro de borrar?")) {
       cleanTasks();
     }
   };
@@ -12,7 +15,8 @@ export const VisibilityControl = ({ isChecked, setshowCompleted, cleanTasks }) =
         <input
           className="form-check-input"
           type="checkbox"
-          Checked={isChecked}
+          //La propiedad es con c minuscula
+          checked={isChecked}
           onChange={(e) => setshowCompleted(e.target.checked)}
         />
         <label>Mostrar tareas resueltas</label>
@@ -20,7 +24,6 @@ export const VisibilityControl = ({ isChecked, setshowCompleted, cleanTasks }) =
       <button onClick={handleDelete} className="btn btn-danger btn-sm">
         Borrar resueltas
       </button>
-
     </div>
   );
 };
